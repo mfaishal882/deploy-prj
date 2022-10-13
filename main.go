@@ -22,5 +22,8 @@ func main() {
 	e.GET("/hello_bang", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "hello bang makan bang")
 	})
+	e.GET("/hello_coy", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, "hello coy makan kuy")
+	})
 	e.Start(":8000")
 }
