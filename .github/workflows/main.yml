@@ -14,9 +14,9 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          cd downloads/deploy-prj
-          git pull origin main
-          docker stop prjku
-          docker rm prjku
-          docker build -t prj12 .
-          docker run --name prjku -d -p 8000:8000 prj12
+          cd project
+          git clone git@github.com:mfaishal882/deploy-prj.git
+          docker stop deploy-prj
+          docker rm deploy-prj
+          docker build -t deploy-prj .
+          docker run --name prjku -d -p 8000:8000 deploy-prj
