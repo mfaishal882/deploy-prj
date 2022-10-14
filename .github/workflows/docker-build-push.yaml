@@ -38,4 +38,4 @@ jobs:
             docker stop prj2
             docker rm prj2
             docker rmi mfaishal882/deployprj2
-            docker run --name prj2 --link -d -p 8000:8000 mfaishal882/deployprj2
+            docker run --name prj2 --link mysqlbe12:3306-d -p 8000:8000 mfaishal882/deployprj2
