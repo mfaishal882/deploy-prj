@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: mfaishal882/prj:latest
+          tags: mfaishal882/deployprj2:latest
       - 
         name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -35,7 +35,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker stop prjku
-            docker rm prjku
-            docker rmi mfaishal882/prj
-            docker run --name prjku --link -d -p 8000:8000 mfaishal882/prj
+            docker stop prj2
+            docker rm prj2
+            docker rmi mfaishal882/deployprj2
+            docker run --name prj2 --link -d -p 8000:8000 mfaishal882/deployprj2

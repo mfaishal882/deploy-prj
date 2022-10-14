@@ -19,7 +19,7 @@ type User struct {
 }
 
 func connectGorm() (*gorm.DB, error) {
-	dsn := "root:@mysql:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:@mysqlbe12:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
