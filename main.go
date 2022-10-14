@@ -19,8 +19,8 @@ type User struct {
 }
 
 func connectGorm() (*gorm.DB, error) {
-	// dsn := "root:zxcvbnm100%@tcp(mysqlAwsDocker:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := "root:1234@tcp(localhost:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:zxcvbnm100%@tcp(mysqlAwsDocker:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	// dsn := "root:1234@tcp(localhost:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
