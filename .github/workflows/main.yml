@@ -1,22 +1,22 @@
-name: remote ssh command
-on: [push]
-jobs:
+# name: remote ssh command
+# on: [push]
+# jobs:
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd project/deploy-prj
-          git pull origin main
-          docker stop prjku
-          docker rm prjku
-          docker build -t prj12 .
-          docker run --name prjku -d --rm -p 8000:8000 deploy-prj
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: executing remote ssh commands using ssh key
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.HOST }}
+#         username: ${{ secrets.USERNAME }}
+#         key: ${{ secrets.KEY }}
+#         port: ${{ secrets.PORT }}
+#         script: |
+#           cd project/deploy-prj
+#           git pull origin main
+#           docker stop prjku
+#           docker rm prjku
+#           docker build -t prj12 .
+#           docker run --name prjku -d --rm -p 8000:8000 deploy-prj
