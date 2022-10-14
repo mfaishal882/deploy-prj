@@ -12,14 +12,16 @@ import (
 )
 
 type User struct {
-	ID       string `json:"id" form:"id"`
+	gorm.Model
 	Nama     string `json:"nama" form:"nama"`
 	HP       string `json:"hp" form:"hp"`
 	Password string `json:"password" form:"password"`
 }
 
 func connectGorm() (*gorm.DB, error) {
-	dsn := "root:zxcvbnm100%@tcp(mysqlAwsDocker:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	// dsn := "root:zxcvbnm100%@tcp(mysqlAwsDocker:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:1234@tcp(localhost:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
@@ -35,11 +37,11 @@ type RegisterFormat struct {
 
 func Create(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		var input RegisterFormat
+		var input User
 		if err := c.Bind(&input); err != nil {
 			return c.JSON(http.StatusBadRequest, FailResponse("cannot bind input"))
 		}
-		err := db.Save(&input).Error
+		err := db.Create(&input).Error
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, FailResponse(err.Error()))
 		}
@@ -102,5 +104,5 @@ func main() {
 	// e.GET("/hello_coy", func(c echo.Context) error {
 	// 	return c.JSON(http.StatusOK, "hello coy makan kuy")
 	// })
-	e.Start(":8000")
+	e.Logger.Fatal(e.Start(":8000"))
 }
