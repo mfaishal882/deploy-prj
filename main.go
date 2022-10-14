@@ -19,7 +19,7 @@ type User struct {
 }
 
 func connectGorm() (*gorm.DB, error) {
-	dsn := "root:@tcp(mysqlbe12:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:@tcp(mysqlAwsDocker:3306)/test_deploy_db?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func GetAll(db *gorm.DB) echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, FailResponse(err.Error()))
 		}
 
-		return c.JSON(http.StatusCreated, SuccessResponse("berhasil register", result))
+		return c.JSON(http.StatusCreated, SuccessResponse("berhasil get data", result))
 	}
 }
 
