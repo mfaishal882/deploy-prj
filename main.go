@@ -39,7 +39,7 @@ func Create(db *gorm.DB) echo.HandlerFunc {
 		if err := c.Bind(&input); err != nil {
 			return c.JSON(http.StatusBadRequest, FailResponse("cannot bind input"))
 		}
-		err := db.Save(input).Error
+		err := db.Save(&input).Error
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, FailResponse(err.Error()))
 		}
